@@ -1,0 +1,533 @@
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #E8612C;
+  --orange-light: #F7905A;
+  --cream: #FFF8F4;
+  --white: #FFFFFF;
+  --text-dark: #1A1A2E;
+  --text-mid: #5A5A7A;
+  --text-light: #9898B0;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --card-shadow-hover: 0 8px 32px rgba(232,97,44,0.18);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --sidebar-w: 240px;
+  --font: 'DM Sans', sans-serif;
+}
+
+html, body { height: 100%; font-family: var(--font); background: var(--cream); color: var(--text-dark); }
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: var(--font); }
+input { font-family: var(--font); border: none; outline: none; background: none; }
+
+/* ===== LAYOUT ===== */
+/* HTML uses: <aside class="sidebar" id="sidebar"> */
+.sidebar {
+  display: none;
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--white);
+  box-shadow: 2px 0 20px rgba(0,0,0,0.06);
+  flex-direction: column;
+  z-index: 100;
+  padding: 28px 0;
+}
+
+/* HTML uses: <main class="main" id="main"> */
+.main {
+  min-height: 100vh;
+  padding-bottom: 80px;
+  overflow-x: hidden;
+}
+
+/* ===== SIDEBAR ===== */
+/* HTML uses: <div class="sidebar-brand"> */
+.sidebar-brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 24px 32px;
+  border-bottom: 1px solid #F0F0F5;
+  font-size: 22px; font-weight: 900; color: var(--orange); letter-spacing: -0.5px;
+}
+
+/* HTML uses: <nav class="snav-wrap"> and <button class="snav active"> */
+.snav-wrap { flex: 1; padding: 24px 16px; display: flex; flex-direction: column; gap: 6px; }
+.snav {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border-radius: var(--radius-sm);
+  font-weight: 700; font-size: 15px; color: var(--text-mid);
+  transition: all 0.2s; width: 100%; text-align: left;
+}
+.snav:hover, .snav.active { background: #FFF0EA; color: var(--orange); }
+
+/* HTML uses: <div class="sidebar-addr"> */
+.sidebar-addr {
+  display: flex; gap: 6px; align-items: center;
+  padding: 20px 24px;
+  border-top: 1px solid #F0F0F5;
+  font-size: 12px; color: var(--text-light); font-weight: 600;
+}
+
+/* ===== SCREENS ===== */
+.screen { padding: 0 0 20px; }
+.screen.hidden { display: none !important; }
+
+/* ===== MOBILE HEADER ===== */
+/* HTML uses: <header class="mob-hdr"> */
+.mob-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px 8px;
+  background: var(--white);
+  position: sticky; top: 0; z-index: 50;
+}
+/* HTML uses: <div class="mob-hdr-left"> */
+.mob-hdr-left { display: flex; align-items: center; gap: 10px; }
+/* HTML uses: <div class="mob-label"> */
+.mob-label { font-weight: 800; font-size: 17px; color: var(--text-dark); }
+/* HTML uses: <div class="mob-addr"> */
+.mob-addr { font-size: 12px; color: var(--text-light); font-weight: 600; }
+
+/* HTML uses: <button class="icon-btn"> */
+.icon-btn {
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px; border-radius: 50%;
+  transition: background 0.2s;
+}
+.icon-btn:hover { background: #F0F0F5; }
+.icon-btn.sm { padding: 3px; }
+
+/* ===== DESKTOP TOP BAR ===== */
+/* HTML uses: <div class="desk-bar"> */
+.desk-bar {
+  display: none;
+  align-items: flex-start; justify-content: space-between; gap: 24px;
+  padding: 32px 32px 16px;
+}
+/* HTML uses: <h1 class="desk-title"> */
+.desk-title { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--text-dark); }
+/* HTML uses: <p class="desk-sub"> */
+.desk-sub { font-size: 15px; color: var(--text-mid); margin-top: 4px; }
+/* HTML uses: <div class="desk-srch-wrap"> */
+.desk-srch-wrap { flex: 0 0 340px; }
+
+/* ===== SEARCH BAR ===== */
+/* HTML uses: <div class="mob-srch"> */
+.mob-srch { padding: 8px 20px 12px; background: var(--white); }
+
+/* HTML uses: <div class="searchbar"> */
+.searchbar {
+  display: flex; align-items: center; gap: 10px;
+  background: #F5F5FA; border-radius: 50px;
+  padding: 11px 18px;
+}
+.searchbar input { flex: 1; font-size: 14px; color: var(--text-dark); font-weight: 600; }
+.searchbar input::placeholder { color: var(--text-light); font-weight: 600; }
+
+/* ===== BANNER ===== */
+/* HTML uses: <div class="banner-wrap"> */
+.banner-wrap { padding: 12px 20px 0; }
+
+/* HTML uses: <div class="banner"> */
+.banner {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  min-height: 150px;
+  background: linear-gradient(135deg, #C0392B 0%, #8B0000 60%, #5A0010 100%);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 24px 20px;
+}
+
+/* HTML uses: <div class="banner-copy"> */
+.banner-copy { }
+.banner-copy h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700;
+  color: #fff; line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* HTML uses: <span class="banner-tag"> */
+.banner-tag { color: #FFD6C0; font-size: 14px; font-weight: 800; margin-top: 6px; letter-spacing: 1px; display: block; }
+
+/* HTML uses: <img class="banner-img"> */
+.banner-img {
+  height: 130px; width: auto;
+  filter: drop-shadow(2px 4px 16px rgba(0,0,0,0.4));
+  object-fit: contain;
+}
+
+/* HTML uses: <div class="dots"> and <span class="dot"> / <span class="dot on"> */
+.dots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #DDD; transition: background 0.2s;
+}
+.dot.on { background: var(--orange); }
+
+/* ===== TOGGLE ===== */
+/* HTML uses: <div class="tog-row"> */
+.tog-row { display: flex; gap: 24px; padding: 14px 20px 4px; }
+
+/* HTML uses: <button class="tog on"> and <button class="tog"> */
+.tog {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 14px; font-weight: 700; color: var(--text-mid);
+}
+.tog.on { color: var(--orange); }
+
+/* HTML uses: <span class="tog-radio"> */
+.tog-radio {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid #CCC;
+  display: inline-block; position: relative; transition: all 0.2s;
+}
+.tog.on .tog-radio {
+  border-color: var(--orange);
+  background: var(--orange);
+  box-shadow: 0 0 0 3px rgba(232,97,44,0.18);
+}
+
+/* ===== SECTION HEADER ===== */
+/* HTML uses: <div class="sec-hdr"> */
+.sec-hdr {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 20px 10px;
+}
+/* HTML uses: <span class="sec-title"> */
+.sec-title { font-size: 18px; font-weight: 800; color: var(--text-dark); }
+/* HTML uses: <button class="sec-link"> */
+.sec-link { font-size: 13px; font-weight: 700; color: var(--orange); }
+
+/* ===== CATEGORIES GRID ===== */
+/* HTML uses: <div class="cat-grid" id="catGrid"> */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 0 20px;
+}
+.cat-card {
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 14px 8px 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.cat-card:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); }
+.cat-card:last-child.has-arrow::after {
+  content: '→';
+  position: absolute; right: -8px; top: 50%;
+  transform: translateY(-50%);
+  background: var(--orange); color: #fff;
+  width: 22px; height: 22px; border-radius: 50%;
+  font-size: 12px; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(232,97,44,0.3);
+}
+.cat-img { width: 48px; height: 52px; object-fit: contain; }
+.cat-name { font-size: 11px; font-weight: 700; color: var(--text-mid); text-align: center; }
+
+/* ===== OUTLETS ===== */
+/* HTML uses: <div class="outlet-scrl" id="outletRow"> */
+.outlet-scrl {
+  display: flex; gap: 14px;
+  padding: 0 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.outlet-scrl::-webkit-scrollbar { display: none; }
+.outlet-card {
+  flex: 0 0 260px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.outlet-card:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); }
+.outlet-img { width: 100%; height: 130px; object-fit: cover; display: block; }
+.outlet-info { background: var(--white); padding: 12px 14px; }
+.outlet-name { font-size: 14px; font-weight: 800; color: var(--text-dark); }
+.outlet-meta { font-size: 12px; color: var(--text-light); margin-top: 3px; }
+
+/* ===== BOTTOM NAV ===== */
+/* HTML uses: <nav class="bnav" id="bnav"> and <button class="bnav-btn active"> */
+.bnav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--white);
+  border-top: 1px solid #EEE;
+  display: flex; justify-content: space-around;
+  padding: 8px 0 14px;
+  z-index: 200;
+}
+.bnav-btn {
+  font-size: 24px;
+  padding: 8px 20px;
+  border-radius: 12px;
+  transition: background 0.2s, transform 0.15s;
+  color: var(--text-light);
+}
+.bnav-btn.active { background: #FFF0EA; color: var(--orange); transform: scale(1.1); }
+
+/* ===== PRODUCTS SCREEN ===== */
+/* HTML uses: <div class="prod-srch-row"> */
+.prod-srch-row {
+  display: flex; gap: 12px; padding: 12px 20px;
+  background: var(--white);
+}
+/* HTML uses: <div class="prod-grid" id="prodGrid"> */
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 16px 20px;
+}
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.product-card:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); }
+.product-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--orange); color: #fff;
+  font-size: 10px; font-weight: 800;
+  border-radius: 6px; padding: 2px 7px;
+}
+.add-btn {
+  position: absolute; bottom: 12px; right: 12px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--orange); color: #fff;
+  font-size: 18px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(232,97,44,0.35);
+  transition: transform 0.15s;
+}
+.add-btn:hover { transform: scale(1.15); }
+.product-img-wrap { display: flex; justify-content: center; padding: 8px 0 12px; }
+.product-img { height: 100px; width: auto; object-fit: contain; }
+.product-price { font-size: 15px; font-weight: 900; color: var(--text-dark); }
+.product-dist { font-size: 11px; color: var(--text-light); margin-left: 6px; }
+.product-outlet { font-size: 12px; font-weight: 700; color: var(--orange); margin-top: 2px; }
+.product-desc { font-size: 11px; color: var(--text-light); margin-top: 2px; line-height: 1.4; }
+.product-vol { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.price-row { display: flex; align-items: baseline; }
+
+/* ===== TRACKING SCREEN ===== */
+/* HTML uses: <div class="map-wrap"> */
+.map-wrap {
+  position: relative; height: 220px; overflow: hidden;
+}
+.map-img { width: 100%; height: 100%; object-fit: cover; }
+
+/* HTML uses: <div class="map-veil"> */
+.map-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(255,248,244,0.5));
+}
+
+/* HTML uses: <button class="map-back"> */
+.map-back {
+  position: absolute; top: 16px; left: 16px;
+  background: rgba(255,255,255,0.9); border-radius: 50%;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  border: none; cursor: pointer;
+}
+
+/* HTML uses: <div class="map-pin"> */
+.map-pin {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* HTML uses: <div class="track-panel"> */
+.track-panel {
+  background: var(--white);
+  border-radius: 24px 24px 0 0;
+  margin-top: -20px;
+  position: relative;
+  padding: 20px 20px 100px;
+  min-height: 60vh;
+}
+
+/* HTML uses: <div class="rate-card" id="rateCard"> */
+.rate-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(232,97,44,0.12);
+  padding: 16px 20px;
+  border: 1.5px solid #FFE8DC;
+  margin-bottom: 16px;
+  transition: opacity 0.5s;
+}
+/* HTML uses: <p class="rate-ttl"> */
+.rate-ttl { font-weight: 800; font-size: 16px; color: var(--orange); text-align: center; margin-bottom: 10px; }
+/* HTML uses: <div class="rate-row"> */
+.rate-row { display: flex; align-items: center; gap: 16px; justify-content: center; }
+/* HTML uses: <span class="rate-lbl"> */
+.rate-lbl { font-size: 14px; font-weight: 700; color: var(--text-mid); }
+
+/* HTML uses: <div class="stars" id="stars"> and <button class="star"> */
+.stars { display: flex; gap: 4px; }
+.star { font-size: 24px; color: #DDD; cursor: pointer; transition: color 0.15s, transform 0.15s; }
+.star.lit { color: #F5A623; }
+.star:hover { transform: scale(1.2); }
+
+/* HTML uses: <div class="eta-row"> */
+.eta-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+}
+/* HTML uses: <span class="eta-txt"> */
+.eta-txt { font-size: 18px; font-weight: 800; color: var(--orange); }
+
+/* ===== TIMELINE ===== */
+/* HTML uses: <div class="timeline" id="timeline"> */
+.timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+.tl-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  position: relative; padding-bottom: 18px;
+}
+.tl-step:last-child { padding-bottom: 0; }
+.tl-left {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 0 0 24px;
+}
+.tl-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2.5px solid #DDD; background: #fff;
+  flex-shrink: 0; transition: all 0.3s;
+}
+.tl-dot.done { border-color: var(--orange); background: var(--orange); }
+.tl-dot.current { border-color: var(--orange); background: #fff; box-shadow: 0 0 0 3px rgba(232,97,44,0.2); }
+.tl-line {
+  width: 2px; flex: 1; min-height: 18px;
+  background: #EEE;
+  margin-top: 2px;
+}
+.tl-line.done { background: var(--orange); }
+.tl-label { font-size: 14px; font-weight: 700; color: var(--text-mid); padding-top: 0; }
+.tl-label.done { color: var(--orange); }
+.tl-label.current { color: var(--text-dark); }
+
+/* ===== CHAT ===== */
+/* HTML uses: <div class="chat-zone"> */
+.chat-zone { border-top: 1px solid #F0F0F5; padding-top: 14px; }
+/* HTML uses: <p class="chat-note"> */
+.chat-note { font-size: 13px; color: var(--text-mid); font-weight: 600; margin-bottom: 10px; }
+/* HTML uses: <div class="chat-row"> */
+.chat-row { display: flex; align-items: center; gap: 10px; }
+/* HTML uses: <input class="chat-inp"> */
+.chat-inp {
+  flex: 1; background: #F5F5FA; border-radius: 50px;
+  padding: 11px 18px; font-size: 13px; color: var(--text-mid);
+  font-weight: 600; border: none; outline: none; font-family: var(--font);
+}
+/* HTML uses: <button class="chat-send"> */
+.chat-send {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--orange); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(232,97,44,0.3);
+  transition: transform 0.15s;
+}
+.chat-send:hover { transform: scale(1.1); }
+
+/* ===== TOAST ===== */
+/* HTML uses: <div class="toast" id="toast"> */
+.toast {
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--text-dark); color: #fff;
+  padding: 10px 22px; border-radius: 50px;
+  font-size: 13px; font-weight: 700;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== PADDING BUFFER ===== */
+/* HTML uses: <div class="pb"> */
+.pb { height: 20px; }
+
+/* ===== PRODUCTS SEARCH ROW ===== */
+/* HTML uses: <div class="prod-srch-row"> */
+/* id="prodTitle" in the mob-hdr of products screen */
+
+/* ===== DESKTOP MEDIA QUERY ===== */
+@media (min-width: 768px) {
+  body { background: #F5F3F0; }
+
+  .sidebar { display: flex; }
+
+  .main {
+    margin-left: var(--sidebar-w);
+    padding: 0;
+    max-width: none;
+    padding-bottom: 0;
+  }
+
+  .mob-hdr { display: none; }
+  .mob-srch { display: none; }
+  .bnav { display: none; }
+
+  .desk-bar { display: flex; }
+
+  .screen { padding: 0 32px 40px; }
+
+  .banner-wrap { padding: 0; }
+  .banner { min-height: 200px; border-radius: 20px; }
+  .banner-copy h2 { font-size: 38px; }
+  .banner-img { height: 180px; }
+
+  .tog-row { padding: 16px 0 4px; }
+
+  .sec-hdr { padding: 24px 0 12px; }
+
+  .cat-grid {
+    grid-template-columns: repeat(8, 1fr);
+    padding: 0;
+    gap: 14px;
+  }
+  .cat-card { padding: 16px 10px 12px; }
+  .cat-img { width: 52px; height: 58px; }
+
+  .outlet-scrl { padding: 0; gap: 18px; }
+  .outlet-card { flex: 0 0 300px; }
+
+  .prod-srch-row { padding: 0; background: none; }
+  .prod-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 16px 0;
+    gap: 18px;
+  }
+
+  /* Tracking screen desktop */
+  .map-wrap { height: 260px; border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
+  .track-panel {
+    margin-top: 0;
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 24px;
+    min-height: unset;
+  }
+
+  #screen-tracking { max-width: 680px; }
+}
+
+@media (min-width: 1200px) {
+  .cat-grid { grid-template-columns: repeat(8, 1fr); }
+  .prod-grid { grid-template-columns: repeat(4, 1fr); }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>SipNow – Premium Liquor Delivery</title>
+
+  <!-- Performance preconnects -->
+  <link rel="preconnect" href="https://images.unsplash.com"/>
+  <link rel="preconnect" href="https://i.imgur.com"/>
+  <link rel="preconnect" href="https://cdn-icons-png.flaticon.com"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <!-- Single font request -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- DESKTOP SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <circle cx="16" cy="16" r="16" fill="#E8612C"/>
+      <path d="M11 8h10l-2 8h-6L11 8z" fill="white" opacity=".9"/>
+      <rect x="14" y="16" width="4" height="8" rx="2" fill="white"/>
+    </svg>
+    <span>SipNow</span>
+  </div>
+  <nav class="snav-wrap">
+    <button class="snav active" data-screen="home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12l9-9 9 9v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>Home
+    </button>
+    <button class="snav" data-screen="products">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2l1.5 4.5H20l-1.5 12H5.5L4 6.5H2V2h4z"/></svg>Products
+    </button>
+    <button class="snav" data-screen="tracking">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Track Order
+    </button>
+    <button class="snav" data-screen="account">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>Account
+    </button>
+  </nav>
+  <div class="sidebar-addr">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="#E8612C" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+    <span>75 Firehouse Rd, Woodbourne</span>
+  </div>
+</aside>
+
+<!-- MAIN WRAPPER -->
+<main class="main" id="main">
+
+  <!-- ════ HOME ════ -->
+  <section class="screen" id="screen-home">
+
+    <header class="mob-hdr">
+      <div class="mob-hdr-left">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#E8612C" aria-hidden="true"><path d="M3 12l9-9 9 9v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>
+        <div>
+          <div class="mob-label">Home</div>
+          <div class="mob-addr">75 Firehouse Rd, Woodbourne...</div>
+        </div>
+      </div>
+      <button class="icon-btn" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      </button>
+    </header>
+
+    <div class="desk-bar">
+      <div>
+        <h1 class="desk-title">Good Evening 🌙</h1>
+        <p class="desk-sub">What would you like tonight?</p>
+      </div>
+      <div class="desk-srch-wrap">
+        <div class="searchbar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9898B0" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="search" id="deskSearch" placeholder="Search liquor…" autocomplete="off" oninput="onSearch(this.value)"/>
+          <button id="deskClear" class="icon-btn sm" onclick="clearSearch()" style="display:none" aria-label="Clear">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mob-srch">
+      <div class="searchbar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9898B0" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="mobSearch" placeholder="Search Liquor" autocomplete="off" oninput="onSearch(this.value)"/>
+      </div>
+    </div>
+
+    <!-- Promo Banner -->
+    <div class="banner-wrap">
+      <div class="banner">
+        <div class="banner-copy">
+          <h2>GRAB<br>SOME WINE</h2>
+          <span class="banner-tag">SAVE 30%</span>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=300&h=200&q=70&fm=webp&fit=crop"
+          alt="Wine bottles"
+          class="banner-img"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div class="dots">
+        <span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>
+
+    <!-- Toggle -->
+    <div class="tog-row">
+      <button class="tog on" id="togDel" onclick="setDel('delivery')">
+        <span class="tog-radio"></span>Delivery
+      </button>
+      <button class="tog" id="togPick" onclick="setDel('pickup')">
+        <span class="tog-radio"></span>Pickup
+      </button>
+    </div>
+
+    <!-- Categories -->
+    <div class="sec-hdr">
+      <span class="sec-title">Categories</span>
+      <button class="sec-link" onclick="navTo('products')">See All →</button>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+
+    <!-- Outlets -->
+    <div class="sec-hdr" style="margin-top:6px">
+      <span class="sec-title">Outlets</span>
+      <button class="sec-link">See All →</button>
+    </div>
+    <div class="outlet-scrl" id="outletRow"></div>
+
+    <div class="pb"></div>
+  </section>
+
+  <!-- ════ PRODUCTS ════ -->
+  <section class="screen hidden" id="screen-products">
+    <header class="mob-hdr">
+      <div class="mob-hdr-left">
+        <button class="icon-btn" onclick="navTo('home')" aria-label="Back">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="mob-label" id="prodTitle">All Products</div>
+      </div>
+      <button class="icon-btn" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      </button>
+    </header>
+
+    <div class="prod-srch-row">
+      <div class="searchbar" style="flex:1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9898B0" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="prodSearch" placeholder="Search products…" autocomplete="off" oninput="filterProds(this.value)"/>
+        <button class="icon-btn sm" onclick="document.getElementById('prodSearch').value='';filterProds('')" aria-label="Clear">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="prod-grid" id="prodGrid"></div>
+    <div class="pb"></div>
+  </section>
+
+  <!-- ════ TRACKING ════ -->
+  <section class="screen hidden" id="screen-tracking">
+    <div class="map-wrap">
+      <img
+        src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&h=300&q=60&fm=webp&fit=crop"
+        alt="Delivery map"
+        class="map-img"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="map-veil"></div>
+      <button class="map-back" onclick="navTo('home')" aria-label="Back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </button>
+      <div class="map-pin" aria-hidden="true">
+        <svg width="26" height="34" viewBox="0 0 26 34"><path d="M13 0C5.82 0 0 5.82 0 13c0 9 13 21 13 21S26 22 26 13C26 5.82 20.18 0 13 0z" fill="#E8612C"/><circle cx="13" cy="13" r="5" fill="white"/></svg>
+      </div>
+    </div>
+
+    <div class="track-panel">
+      <div class="rate-card" id="rateCard">
+        <p class="rate-ttl">Please give your Rating!</p>
+        <div class="rate-row">
+          <span class="rate-lbl">Shop</span>
+          <div class="stars" id="stars">
+            <button class="star" onclick="doRate(1)" aria-label="Rate 1">★</button>
+            <button class="star" onclick="doRate(2)" aria-label="Rate 2">★</button>
+            <button class="star" onclick="doRate(3)" aria-label="Rate 3">★</button>
+            <button class="star" onclick="doRate(4)" aria-label="Rate 4">★</button>
+            <button class="star" onclick="doRate(5)" aria-label="Rate 5">★</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="eta-row">
+        <span class="eta-txt">Arriving in 20 min.</span>
+        <svg width="28" height="20" viewBox="0 0 36 24" fill="#E8612C" aria-hidden="true"><path d="M34 14h-2v-5l-5-7H10L6 7H1a1 1 0 00-1 1v5h-.01A4 4 0 007 17h.17A4 4 0 0015 17h6a4 4 0 007.83-1H34v-2zM10 3h14l3.5 5H6.5L10 3zM4 20a2 2 0 110-4 2 2 0 010 4zm25 0a2 2 0 110-4 2 2 0 010 4z"/></svg>
+      </div>
+
+      <div class="timeline" id="timeline"></div>
+
+      <div class="chat-zone">
+        <p class="chat-note">Order has been picked up by <strong>Jacob Lee</strong></p>
+        <div class="chat-row">
+          <input type="text" placeholder="Start conversation…" class="chat-inp" aria-label="Message"/>
+          <button class="chat-send" aria-label="Send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="bnav" id="bnav" aria-label="Main navigation">
+  <button class="bnav-btn active" data-screen="home" onclick="navTo('home');bnavSet(this)" aria-label="Home">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12l9-9 9 9v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>
+  </button>
+  <button class="bnav-btn" data-screen="products" onclick="navTo('products');bnavSet(this)" aria-label="Products">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2l1.5 4.5H20l-1.5 12H5.5L4 6.5H2V2h4z"/></svg>
+  </button>
+  <button class="bnav-btn" data-screen="tracking" onclick="navTo('tracking');bnavSet(this)" aria-label="Track order">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+  </button>
+  <button class="bnav-btn" data-screen="account" onclick="bnavSet(this)" aria-label="Account">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+  </button>
+</nav>
+
+<!-- Toast notification -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
