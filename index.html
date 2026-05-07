@@ -2,18 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>SipNow – Premium Liquor Delivery</title>
-
-  <!-- Performance preconnects -->
-  <link rel="preconnect" href="https://images.unsplash.com"/>
-  <link rel="preconnect" href="https://i.imgur.com"/>
-  <link rel="preconnect" href="https://cdn-icons-png.flaticon.com"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>MAISON — Fine Spirits Atelier</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-
-  <!-- Single font request -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -21,224 +14,287 @@
 <!-- DESKTOP SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-brand">
-    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <circle cx="16" cy="16" r="16" fill="#E8612C"/>
-      <path d="M11 8h10l-2 8h-6L11 8z" fill="white" opacity=".9"/>
-      <rect x="14" y="16" width="4" height="8" rx="2" fill="white"/>
-    </svg>
-    <span>SipNow</span>
+    <div class="brand-emblem">M</div>
+    <div class="brand-text">
+      <div class="brand-name">MAISON</div>
+      <div class="brand-sub">Fine Spirits Atelier</div>
+    </div>
   </div>
   <nav class="snav-wrap">
     <button class="snav active" data-screen="home">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12l9-9 9 9v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>Home
+      <span class="snav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></span>
+      Home
     </button>
     <button class="snav" data-screen="products">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2l1.5 4.5H20l-1.5 12H5.5L4 6.5H2V2h4z"/></svg>Products
+      <span class="snav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></span>
+      Collection
     </button>
     <button class="snav" data-screen="tracking">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Track Order
+      <span class="snav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88 16.24,7.76"/></svg></span>
+      Track Order
     </button>
     <button class="snav" data-screen="account">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>Account
+      <span class="snav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      Account
     </button>
   </nav>
-  <div class="sidebar-addr">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="#E8612C" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
-    <span>75 Firehouse Rd, Woodbourne</span>
+  <div class="sidebar-footer">
+    <div class="sidebar-addr">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      75 Firehouse Rd, Woodbourne
+    </div>
   </div>
 </aside>
 
-<!-- MAIN WRAPPER -->
 <main class="main" id="main">
 
-  <!-- ════ HOME ════ -->
+  <!-- HOME -->
   <section class="screen" id="screen-home">
-
     <header class="mob-hdr">
       <div class="mob-hdr-left">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#E8612C" aria-hidden="true"><path d="M3 12l9-9 9 9v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>
+        <div class="brand-emblem-sm">M</div>
         <div>
-          <div class="mob-label">Home</div>
-          <div class="mob-addr">75 Firehouse Rd, Woodbourne...</div>
+          <div class="mob-brand">MAISON</div>
+          <div class="mob-addr">75 Firehouse Rd…</div>
         </div>
       </div>
-      <button class="icon-btn" aria-label="Notifications">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      <button class="hdr-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
       </button>
     </header>
 
     <div class="desk-bar">
       <div>
-        <h1 class="desk-title">Good Evening 🌙</h1>
-        <p class="desk-sub">What would you like tonight?</p>
+        <div class="desk-eyebrow">Good Evening · Curated for You</div>
+        <h1 class="desk-title">The Finest<br><em>Selection</em></h1>
       </div>
       <div class="desk-srch-wrap">
         <div class="searchbar">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9898B0" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input type="search" id="deskSearch" placeholder="Search liquor…" autocomplete="off" oninput="onSearch(this.value)"/>
-          <button id="deskClear" class="icon-btn sm" onclick="clearSearch()" style="display:none" aria-label="Clear">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" id="deskSearch" placeholder="Search spirits, wine, whisky…" autocomplete="off"/>
+          <button id="deskClear" class="clear-btn" style="display:none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         </div>
       </div>
     </div>
 
     <div class="mob-srch">
       <div class="searchbar">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9898B0" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input type="search" id="mobSearch" placeholder="Search Liquor" autocomplete="off" oninput="onSearch(this.value)"/>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="mobSearch" placeholder="Search spirits…" autocomplete="off"/>
       </div>
     </div>
 
-    <!-- Promo Banner -->
-    <div class="banner-wrap">
-      <div class="banner">
-        <div class="banner-copy">
-          <h2>GRAB<br>SOME WINE</h2>
-          <span class="banner-tag">SAVE 30%</span>
+    <!-- Banner Carousel -->
+    <div class="banner-carousel">
+      <div class="banner-track" id="bannerTrack">
+        <div class="banner-slide">
+          <div class="banner banner-1">
+            <div class="banner-copy">
+              <div class="banner-pill">Featured Release</div>
+              <h2>Bordeaux<br>Grand Cru</h2>
+              <p class="banner-sub">Estate-bottled · Vintage 2019</p>
+              <button class="banner-cta">Explore — Save 30%</button>
+            </div>
+            <div class="banner-visual">
+              <img src="https://images.pexels.com/photos/618990/pexels-photo-618990.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop" alt="Wine" class="banner-img">
+            </div>
+          </div>
         </div>
-        <img
-          src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=300&h=200&q=70&fm=webp&fit=crop"
-          alt="Wine bottles"
-          class="banner-img"
-          loading="eager"
-          decoding="async"
-        />
+        <div class="banner-slide">
+          <div class="banner banner-2">
+            <div class="banner-copy">
+              <div class="banner-pill">Limited Reserve</div>
+              <h2>Speyside<br>Single Malt</h2>
+              <p class="banner-sub">12 Year · Cask Strength</p>
+              <button class="banner-cta">Discover — 20% Off</button>
+            </div>
+            <div class="banner-visual">
+              <img src="https://images.pexels.com/photos/4272898/pexels-photo-4272898.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop" alt="Whisky" class="banner-img">
+            </div>
+          </div>
+        </div>
+        <div class="banner-slide">
+          <div class="banner banner-3">
+            <div class="banner-copy">
+              <div class="banner-pill">Bar Essentials</div>
+              <h2>Artisan<br>Cocktail Kit</h2>
+              <p class="banner-sub">Curated for the discerning palate</p>
+              <button class="banner-cta">Order — Buy 2 Get 1</button>
+            </div>
+            <div class="banner-visual">
+              <img src="https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&fit=crop" alt="Cocktail" class="banner-img">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="dots">
-        <span class="dot on"></span><span class="dot"></span><span class="dot"></span>
-      </div>
+      <button class="carousel-btn prev" id="prevBanner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg></button>
+      <button class="carousel-btn next" id="nextBanner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg></button>
+      <div class="carousel-dots" id="bannerDots"></div>
     </div>
 
-    <!-- Toggle -->
-    <div class="tog-row">
-      <button class="tog on" id="togDel" onclick="setDel('delivery')">
-        <span class="tog-radio"></span>Delivery
-      </button>
-      <button class="tog" id="togPick" onclick="setDel('pickup')">
-        <span class="tog-radio"></span>Pickup
-      </button>
+    <!-- Fulfillment Toggle -->
+    <div class="fulfillment-row">
+      <div class="fulfillment-toggle">
+        <button class="fulfil-btn active" id="togDel">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Delivery
+        </button>
+        <button class="fulfil-btn" id="togPick">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+          Collect
+        </button>
+      </div>
+      <div class="etd-chip">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        Est. 20 min
+      </div>
     </div>
 
     <!-- Categories -->
     <div class="sec-hdr">
-      <span class="sec-title">Categories</span>
-      <button class="sec-link" onclick="navTo('products')">See All →</button>
+      <div class="sec-left">
+        <div class="sec-rule"></div>
+        <span class="sec-title">Categories</span>
+      </div>
+      <button class="sec-link" id="seeAllCat">View All</button>
     </div>
-    <div class="cat-grid" id="catGrid"></div>
+    <div class="cat-scroll" id="catGrid"></div>
 
-    <!-- Outlets -->
-    <div class="sec-hdr" style="margin-top:6px">
-      <span class="sec-title">Outlets</span>
-      <button class="sec-link">See All →</button>
+    <!-- Trending -->
+    <div class="sec-hdr">
+      <div class="sec-left">
+        <div class="sec-rule"></div>
+        <span class="sec-title">Tonight's Selection</span>
+      </div>
+      <button class="sec-link" id="seeAllTrending">View All</button>
     </div>
-    <div class="outlet-scrl" id="outletRow"></div>
-
+    <div class="trending-scroll" id="trendingRow"></div>
     <div class="pb"></div>
   </section>
 
-  <!-- ════ PRODUCTS ════ -->
+  <!-- PRODUCTS -->
   <section class="screen hidden" id="screen-products">
     <header class="mob-hdr">
       <div class="mob-hdr-left">
-        <button class="icon-btn" onclick="navTo('home')" aria-label="Back">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        </button>
-        <div class="mob-label" id="prodTitle">All Products</div>
+        <button class="hdr-btn" id="backFromProducts"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15,18 9,12 15,6"/></svg></button>
+        <div class="mob-brand" id="prodTitle">Collection</div>
       </div>
-      <button class="icon-btn" aria-label="Notifications">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-      </button>
+      <button class="hdr-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></button>
     </header>
-
     <div class="prod-srch-row">
       <div class="searchbar" style="flex:1">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9898B0" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input type="search" id="prodSearch" placeholder="Search products…" autocomplete="off" oninput="filterProds(this.value)"/>
-        <button class="icon-btn sm" onclick="document.getElementById('prodSearch').value='';filterProds('')" aria-label="Clear">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="prodSearch" placeholder="Search collection…" autocomplete="off"/>
+        <button class="clear-btn" id="clearProdSearch"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
     </div>
-
     <div class="prod-grid" id="prodGrid"></div>
     <div class="pb"></div>
   </section>
 
-  <!-- ════ TRACKING ════ -->
+  <!-- TRACKING -->
   <section class="screen hidden" id="screen-tracking">
     <div class="map-wrap">
-      <img
-        src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&h=300&q=60&fm=webp&fit=crop"
-        alt="Delivery map"
-        class="map-img"
-        loading="lazy"
-        decoding="async"
-      />
+      <img src="https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=900&h=400&fit=crop" alt="Map" class="map-img">
       <div class="map-veil"></div>
-      <button class="map-back" onclick="navTo('home')" aria-label="Back">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      </button>
-      <div class="map-pin" aria-hidden="true">
-        <svg width="26" height="34" viewBox="0 0 26 34"><path d="M13 0C5.82 0 0 5.82 0 13c0 9 13 21 13 21S26 22 26 13C26 5.82 20.18 0 13 0z" fill="#E8612C"/><circle cx="13" cy="13" r="5" fill="white"/></svg>
-      </div>
+      <button class="map-back-btn" id="backFromTracking"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15,18 9,12 15,6"/></svg></button>
+      <div class="map-label-badge">Live Tracking</div>
+      <div class="map-pin"><svg width="30" height="40" viewBox="0 0 30 40"><path d="M15 0C6.716 0 0 6.716 0 15c0 10.5 15 25 15 25S30 25.5 30 15C30 6.716 23.284 0 15 0z" fill="#1A1A2E"/><circle cx="15" cy="15" r="6" fill="white"/><circle cx="15" cy="15" r="3" fill="#1A1A2E"/></svg></div>
     </div>
-
     <div class="track-panel">
       <div class="rate-card" id="rateCard">
-        <p class="rate-ttl">Please give your Rating!</p>
-        <div class="rate-row">
-          <span class="rate-lbl">Shop</span>
-          <div class="stars" id="stars">
-            <button class="star" onclick="doRate(1)" aria-label="Rate 1">★</button>
-            <button class="star" onclick="doRate(2)" aria-label="Rate 2">★</button>
-            <button class="star" onclick="doRate(3)" aria-label="Rate 3">★</button>
-            <button class="star" onclick="doRate(4)" aria-label="Rate 4">★</button>
-            <button class="star" onclick="doRate(5)" aria-label="Rate 5">★</button>
-          </div>
+        <div>
+          <div class="rate-title">Rate Your Experience</div>
+          <div class="rate-sub">How was your last delivery?</div>
+        </div>
+        <div class="stars" id="stars">
+          <button class="star" data-rate="1">★</button>
+          <button class="star" data-rate="2">★</button>
+          <button class="star" data-rate="3">★</button>
+          <button class="star" data-rate="4">★</button>
+          <button class="star" data-rate="5">★</button>
         </div>
       </div>
-
-      <div class="eta-row">
-        <span class="eta-txt">Arriving in 20 min.</span>
-        <svg width="28" height="20" viewBox="0 0 36 24" fill="#E8612C" aria-hidden="true"><path d="M34 14h-2v-5l-5-7H10L6 7H1a1 1 0 00-1 1v5h-.01A4 4 0 007 17h.17A4 4 0 0015 17h6a4 4 0 007.83-1H34v-2zM10 3h14l3.5 5H6.5L10 3zM4 20a2 2 0 110-4 2 2 0 010 4zm25 0a2 2 0 110-4 2 2 0 010 4z"/></svg>
+      <div class="eta-card">
+        <div>
+          <div class="eta-label">Estimated Arrival</div>
+          <div class="eta-value">20 minutes</div>
+          <div class="eta-driver">Courier: <strong>Jacob Lee</strong></div>
+        </div>
+        <div class="eta-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
       </div>
-
-      <div class="timeline" id="timeline"></div>
-
+      <div class="timeline-section">
+        <div class="tl-section-title">Order Status</div>
+        <div class="timeline" id="timeline"></div>
+      </div>
       <div class="chat-zone">
-        <p class="chat-note">Order has been picked up by <strong>Jacob Lee</strong></p>
+        <div class="chat-header-label">Message Courier</div>
         <div class="chat-row">
-          <input type="text" placeholder="Start conversation…" class="chat-inp" aria-label="Message"/>
-          <button class="chat-send" aria-label="Send">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-          </button>
+          <input type="text" placeholder="Type a message…" class="chat-inp"/>
+          <button class="chat-send"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9 22,2"/></svg></button>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ACCOUNT -->
+  <section class="screen hidden" id="screen-account">
+    <header class="mob-hdr">
+      <div class="mob-hdr-left">
+        <button class="hdr-btn" id="backFromAccount"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15,18 9,12 15,6"/></svg></button>
+        <div class="mob-brand">Account</div>
+      </div>
+      <button class="hdr-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></button>
+    </header>
+    <div class="account-hero">
+      <div class="account-avatar">AM</div>
+      <h2 class="account-name">Alex Morgan</h2>
+      <p class="account-email">alex.morgan@maison.com</p>
+      <div class="account-badge">◆ Gold Connoisseur</div>
+    </div>
+    <div class="account-stats-bar">
+      <div class="a-stat"><div class="a-stat-val">12</div><div class="a-stat-lbl">Orders</div></div>
+      <div class="a-stat-div"></div>
+      <div class="a-stat"><div class="a-stat-val">2</div><div class="a-stat-lbl">Active</div></div>
+      <div class="a-stat-div"></div>
+      <div class="a-stat"><div class="a-stat-val">4.9</div><div class="a-stat-lbl">Rating</div></div>
+    </div>
+    <div class="account-section-title">My Account</div>
+    <div class="account-menu">
+      <button class="acc-item" id="viewOrderHistory">
+        <span class="acc-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+        <span class="acc-label">Order History</span>
+        <span class="acc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg></span>
+      </button>
+      <button class="acc-item" id="manageAddress">
+        <span class="acc-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span class="acc-label">Saved Addresses</span>
+        <span class="acc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg></span>
+      </button>
+      <button class="acc-item" id="paymentMethods">
+        <span class="acc-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+        <span class="acc-label">Payment Methods</span>
+        <span class="acc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg></span>
+      </button>
+      <button class="acc-item danger" id="logoutBtn">
+        <span class="acc-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>
+        <span class="acc-label">Sign Out</span>
+        <span class="acc-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg></span>
+      </button>
+    </div>
+    <div class="account-promo">As a Gold Connoisseur, you have exclusive access to rare releases, private tastings & priority delivery.</div>
+  </section>
+
 </main>
 
-<!-- MOBILE BOTTOM NAV -->
-<nav class="bnav" id="bnav" aria-label="Main navigation">
-  <button class="bnav-btn active" data-screen="home" onclick="navTo('home');bnavSet(this)" aria-label="Home">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12l9-9 9 9v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1v-9z"/></svg>
-  </button>
-  <button class="bnav-btn" data-screen="products" onclick="navTo('products');bnavSet(this)" aria-label="Products">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2l1.5 4.5H20l-1.5 12H5.5L4 6.5H2V2h4z"/></svg>
-  </button>
-  <button class="bnav-btn" data-screen="tracking" onclick="navTo('tracking');bnavSet(this)" aria-label="Track order">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-  </button>
-  <button class="bnav-btn" data-screen="account" onclick="bnavSet(this)" aria-label="Account">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-  </button>
+<nav class="bnav" id="bnav">
+  <button class="bnav-btn active" data-screen="home"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></button>
+  <button class="bnav-btn" data-screen="products"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></button>
+  <button class="bnav-btn" data-screen="tracking"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88 16.24,7.76"/></svg></button>
+  <button class="bnav-btn" data-screen="account"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
 </nav>
 
-<!-- Toast notification -->
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+<div class="toast" id="toast"></div>
 <script src="script.js"></script>
 </body>
 </html>
