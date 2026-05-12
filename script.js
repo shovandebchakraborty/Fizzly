@@ -3,73 +3,90 @@ const APP_STATE = {
   deliveryMode: 'delivery',
   activeCategory: 'All',
   cart: [],
-  rating: 0,
+  favorites: [],
   currentScreen: 'home',
   selectedProduct: null,
   selectedVol: '750ml',
   selectedQty: 1,
   selectedPayment: 'card',
-  modalStep: 1, // 1 = product detail, 2 = order confirm, 3 = success
+  modalStep: 1,
 };
 
+// Categories with real product images
 const CATEGORIES = [
-  { name: 'Red Wine',   img: 'https://cdn-icons-png.flaticon.com/512/324/324297.png' },
-  { name: 'White Wine', img: 'https://cdn-icons-png.flaticon.com/512/324/324299.png' },
-  { name: 'Pink Wine',  img: 'https://cdn-icons-png.flaticon.com/512/324/324298.png' },
-  { name: 'Tequila',   img: 'https://cdn-icons-png.flaticon.com/512/2997/2997577.png' },
-  { name: 'Vodka',     img: 'https://cdn-icons-png.flaticon.com/512/2997/2997566.png' },
-  { name: 'Cider',     img: 'https://cdn-icons-png.flaticon.com/512/324/324306.png' },
-  { name: 'Liqueur',   img: 'https://cdn-icons-png.flaticon.com/512/2997/2997573.png' },
-  { name: 'Whiskey',   img: 'https://cdn-icons-png.flaticon.com/512/2997/2997572.png' },
+  { name: 'Beer',       img: 'https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+  { name: 'Brandy',     img: 'https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+  { name: 'Whiskey',    img: 'https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+  { name: 'Rum',        img: 'https://images.pexels.com/photos/4051386/pexels-photo-4051386.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+  { name: 'Vodka',      img: 'https://images.pexels.com/photos/1407846/pexels-photo-1407846.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+  { name: 'Wine',       img: 'https://images.pexels.com/photos/618990/pexels-photo-618990.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+  { name: 'Gin',        img: 'https://images.pexels.com/photos/4061609/pexels-photo-4061609.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
+  { name: 'More',       img: 'https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop' },
 ];
 
 const PRODUCTS = [
-  { id: 1,  name: 'Merlot Reserve',   category: 'Red Wine',   price: 14.00, badge: '10%', dist: '2.5km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'A beautifully structured Merlot aged 18 months in French oak barrels. Notes of ripe plum, dark cherry, and a hint of vanilla on the finish.', vol: '750ml', vols: ['375ml', '750ml', '1.5L'], isTrending: true,  img: 'https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
-  { id: 2,  name: 'Cabernet Classic', category: 'Red Wine',   price: 14.00, badge: '10%', dist: '2.9km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Bold, structured Cabernet Sauvignon with dark fruit, cedar, and firm tannins. Exceptional with red meats and aged cheeses.', vol: '750ml', vols: ['750ml', '1.5L'], isTrending: false, img: 'https://images.pexels.com/photos/2702805/pexels-photo-2702805.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
-  { id: 3,  name: 'Shiraz Bold',      category: 'Red Wine',   price: 14.00, badge: '10%', dist: '2.5km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Rich, full-bodied Shiraz with a seductive peppery finish. Aromas of blackberry, spice, and smoked meat. Unapologetically bold.', vol: '750ml', vols: ['375ml', '750ml'], isTrending: true,  img: 'https://images.pexels.com/photos/1458694/pexels-photo-1458694.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
-  { id: 4,  name: 'Chardonnay Gold',  category: 'White Wine', price: 18.00, badge: '5%',  dist: '1.8km', outlet: 'PRIME SPIRITS',         desc: 'Crisp and mineral Chardonnay with elegant citrus character. Light oak influence preserves the freshness of lemon zest and green apple.', vol: '750ml', vols: ['375ml', '750ml', '1.5L'], isTrending: true,  img: 'https://images.pexels.com/photos/1283218/pexels-photo-1283218.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
-  { id: 5,  name: 'Belvedere Vodka',  category: 'Vodka',      price: 45.00, badge: '15%', dist: '3.1km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Premium Polish rye vodka with a silky, ultra-smooth finish. Quadruple-distilled for exceptional purity and a subtly creamy character.', vol: '750ml', vols: ['200ml', '375ml', '750ml', '1L'], isTrending: false, img: 'https://images.pexels.com/photos/5947015/pexels-photo-5947015.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
-  { id: 6,  name: 'Patrón Silver',    category: 'Tequila',    price: 55.00, badge: '8%',  dist: '2.2km', outlet: 'PRIME SPIRITS',         desc: 'Artisan blue agave tequila, perfectly balanced for sipping or craft cocktails. Clean, smooth, with a natural sweetness and fresh agave finish.', vol: '750ml', vols: ['375ml', '750ml', '1L'], isTrending: true,  img: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=500&auto=format&fit=crop&q=60' },
-  { id: 7,  name: 'Jameson Irish',    category: 'Whiskey',    price: 38.00, badge: '12%', dist: '1.5km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Triple distilled Irish whiskey renowned for its exceptional smoothness. A perfect balance of spicy, nutty, and vanilla tones with a hint of sweetness.', vol: '750ml', vols: ['200ml', '750ml', '1L'], isTrending: false, img: 'https://images.unsplash.com/photo-1595505467869-8cb257b13be2?w=500&auto=format&fit=crop&q=60' },
-  { id: 8,  name: 'Rosé Garden',      category: 'Pink Wine',  price: 16.00, badge: '20%', dist: '2.0km', outlet: 'WINE CELLAR CO.',       desc: 'Delicate Provençal-style rosé bursting with strawberry, peach blossom, and rose petal aromas. Crisp, refreshing, and endlessly elegant.', vol: '750ml', vols: ['375ml', '750ml', '1.5L'], isTrending: true,  img: 'https://images.unsplash.com/photo-1561150169-371f366b828a?w=500&auto=format&fit=crop&q=60' },
-  { id: 9,  name: 'Glenfiddich 12',   category: 'Whiskey',    price: 65.00, badge: '18%', dist: '2.8km', outlet: 'PRIME SPIRITS',         desc: 'World-renowned 12-year single malt Scotch. Sweet and fruity with a fresh pear, subtle oak, and creamy toffee finish. The benchmark Speyside malt.', vol: '750ml', vols: ['200ml', '375ml', '750ml'], isTrending: true,  img: 'https://images.unsplash.com/photo-1681040900989-645cecfd8ea4?w=500&auto=format&fit=crop&q=60' },
-  { id: 10, name: 'Grey Goose',       category: 'Vodka',      price: 52.00, badge: '10%', dist: '3.0km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'French wheat vodka distilled in Cognac with pristine spring water. Velvety texture, clean finish with a pleasantly soft mouthfeel.', vol: '750ml', vols: ['200ml', '375ml', '750ml', '1.75L'], isTrending: false, img: 'https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 1,  name: 'Merlot Reserve',    category: 'Wine',    price: 14.00, badge: '10%', dist: '2.5km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Beautifully structured Merlot aged 18 months in French oak. Ripe plum, dark cherry, and vanilla finish.', vol: '750ml', vols: ['375ml','750ml','1.5L'], rating: 4.3, stock: 10, isTrending: true,  img: 'https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 2,  name: 'Cabernet Classic',  category: 'Wine',    price: 14.00, badge: '10%', dist: '2.9km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Bold, structured Cabernet with dark fruit, cedar, and firm tannins. Exceptional with red meats.', vol: '750ml', vols: ['750ml','1.5L'], rating: 4.1, stock: 15, isTrending: false, img: 'https://images.pexels.com/photos/2702805/pexels-photo-2702805.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 3,  name: 'Shiraz Bold',       category: 'Wine',    price: 16.00, badge: '10%', dist: '2.5km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Rich, full-bodied Shiraz with peppery finish. Aromas of blackberry, spice, and smoked meat.', vol: '750ml', vols: ['375ml','750ml'], rating: 4.5, stock: 8, isTrending: true,  img: 'https://images.pexels.com/photos/1407846/pexels-photo-1407846.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 4,  name: 'Chardonnay Gold',   category: 'Wine',    price: 18.00, badge: '5%',  dist: '1.8km', outlet: 'PRIME SPIRITS',         desc: 'Crisp and mineral Chardonnay with citrus character. Light oak, lemon zest and green apple.', vol: '750ml', vols: ['375ml','750ml','1.5L'], rating: 4.2, stock: 20, isTrending: true,  img: 'https://images.pexels.com/photos/1283218/pexels-photo-1283218.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 5,  name: 'Belvedere Vodka',   category: 'Vodka',   price: 45.00, badge: '15%', dist: '3.1km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Premium Polish rye vodka. Silky, ultra-smooth finish. Quadruple-distilled for purity.', vol: '750ml', vols: ['200ml','375ml','750ml','1L'], rating: 4.6, stock: 6, isTrending: false, img: 'https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 6,  name: 'Patrón Silver',     category: 'Gin',     price: 55.00, badge: '8%',  dist: '2.2km', outlet: 'PRIME SPIRITS',         desc: 'Artisan blue agave spirit, perfectly balanced. Clean, smooth, with natural sweetness.', vol: '750ml', vols: ['375ml','750ml','1L'], rating: 4.7, stock: 5, isTrending: true,  img: 'https://images.pexels.com/photos/4061609/pexels-photo-4061609.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 7,  name: 'Jameson Irish',     category: 'Whiskey', price: 38.00, badge: '12%', dist: '1.5km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Triple distilled Irish whiskey. Perfect balance of spicy, nutty, and vanilla tones.', vol: '750ml', vols: ['200ml','750ml','1L'], rating: 4.4, stock: 12, isTrending: false, img: 'https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 8,  name: 'Rosé Garden',       category: 'Wine',    price: 16.00, badge: '20%', dist: '2.0km', outlet: 'WINE CELLAR CO.',       desc: 'Provençal-style rosé bursting with strawberry, peach blossom and rose petal aromas.', vol: '750ml', vols: ['375ml','750ml','1.5L'], rating: 4.3, stock: 18, isTrending: true,  img: 'https://images.pexels.com/photos/618990/pexels-photo-618990.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 9,  name: 'Glenfiddich 12',    category: 'Whiskey', price: 65.00, badge: '18%', dist: '2.8km', outlet: 'PRIME SPIRITS',         desc: 'World-renowned 12-year single malt Scotch. Sweet, fruity with fresh pear and creamy toffee.', vol: '750ml', vols: ['200ml','375ml','750ml'], rating: 4.8, stock: 4, isTrending: true,  img: 'https://images.pexels.com/photos/4051386/pexels-photo-4051386.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 10, name: 'Grey Goose',        category: 'Vodka',   price: 52.00, badge: '10%', dist: '3.0km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'French wheat vodka distilled in Cognac. Velvety texture with a pleasantly soft mouthfeel.', vol: '750ml', vols: ['200ml','375ml','750ml','1.75L'], rating: 4.5, stock: 9, isTrending: false, img: 'https://images.pexels.com/photos/339696/pexels-photo-339696.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 11, name: 'Baileys Irish Cream',category: 'Rum',    price: 26.00, badge: '5%',  dist: '2.1km', outlet: 'WINE CELLAR CO.',       desc: 'Rich, creamy Irish whiskey liqueur with chocolate and vanilla. Perfect over ice.', vol: '750ml', vols: ['375ml','750ml','1L'], rating: 4.5, stock: 14, isTrending: true,  img: 'https://images.pexels.com/photos/4272898/pexels-photo-4272898.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
+  { id: 12, name: 'Jack Daniel\'s',    category: 'Whiskey', price: 32.00, badge: '8%',  dist: '1.9km', outlet: 'SHARIN LIQUOR OUTLET', desc: 'Tennessee whiskey charcoal mellowed drop by drop through 10 feet of sugar maple charcoal.', vol: '750ml', vols: ['200ml','750ml','1L'], rating: 4.3, stock: 22, isTrending: false, img: 'https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg?auto=compress&cs=tinysrgb&w=400&fit=crop' },
 ];
 
-const TRACKING_STEPS = [
-  { label: 'Order Received',    status: 'done',    icon: '✦' },
-  { label: 'Payment Confirmed', status: 'done',    icon: '✦' },
-  { label: 'Order Confirmed',   status: 'done',    icon: '✦' },
-  { label: 'Driver Assigned',   status: 'current', icon: '◎' },
-  { label: 'Dispatched',        status: 'pending', icon: '○' },
-  { label: 'Delivered',         status: 'pending', icon: '○' },
-];
+// ===== BADGE UPDATES =====
+function updateBadges() {
+  const cartCount = APP_STATE.cart.reduce((sum, c) => sum + c.qty, 0);
+  const favCount = APP_STATE.favorites.length;
+
+  // All cart badges
+  document.querySelectorAll('.cart-badge').forEach(el => {
+    el.textContent = cartCount;
+    el.style.display = cartCount > 0 ? 'inline-flex' : 'none';
+  });
+  document.querySelectorAll('.bnav-cart-badge').forEach(el => {
+    el.textContent = cartCount;
+    el.style.display = cartCount > 0 ? 'flex' : 'none';
+  });
+
+  // All fav badges
+  document.querySelectorAll('.fav-badge').forEach(el => {
+    el.textContent = favCount;
+    el.style.display = favCount > 0 ? 'inline-flex' : 'none';
+  });
+
+  // Account stat
+  const statFavs = document.getElementById('statFavs');
+  if (statFavs) statFavs.textContent = favCount;
+}
 
 // ===== BANNER CAROUSEL =====
 let currentBanner = 0;
 let bannerInterval;
-let bannerSlides = [];
-let bannerTrack = null;
-let dotsContainer = null;
+let bannerSlidesCount = 0;
 
 function updateBannerCarousel() {
-  if (!bannerTrack) return;
-  bannerTrack.style.transform = `translateX(-${currentBanner * 100}%)`;
+  const track = document.getElementById('bannerTrack');
+  if (!track) return;
+  track.style.transform = `translateX(-${currentBanner * 100}%)`;
   document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
     dot.classList.toggle('active', i === currentBanner);
   });
 }
 
 function nextBanner() {
-  if (!bannerSlides.length) return;
-  currentBanner = (currentBanner + 1) % bannerSlides.length;
+  currentBanner = (currentBanner + 1) % bannerSlidesCount;
   updateBannerCarousel();
   resetBannerInterval();
 }
 
 function prevBanner() {
-  if (!bannerSlides.length) return;
-  currentBanner = (currentBanner - 1 + bannerSlides.length) % bannerSlides.length;
+  currentBanner = (currentBanner - 1 + bannerSlidesCount) % bannerSlidesCount;
   updateBannerCarousel();
   resetBannerInterval();
 }
@@ -80,46 +97,63 @@ function resetBannerInterval() {
 }
 
 function createBannerDots() {
+  const dotsContainer = document.getElementById('bannerDots');
   if (!dotsContainer) return;
   dotsContainer.innerHTML = '';
-  bannerSlides.forEach((_, i) => {
+  for (let i = 0; i < bannerSlidesCount; i++) {
     const dot = document.createElement('div');
     dot.classList.add('carousel-dot');
     if (i === 0) dot.classList.add('active');
     dot.addEventListener('click', () => { currentBanner = i; updateBannerCarousel(); resetBannerInterval(); });
     dotsContainer.appendChild(dot);
-  });
+  }
 }
 
-// ===== RENDER =====
+// ===== STAR RATING HTML =====
+function starHTML(rating) {
+  return `<span class="trend-rating-badge">★ ${rating.toFixed(1)}</span>`;
+}
+
+// ===== RENDER CATEGORIES =====
 function renderCategories() {
   const grid = document.getElementById('catGrid');
   if (!grid) return;
   grid.innerHTML = CATEGORIES.map(cat => `
     <div class="cat-card" onclick="filterByCategory('${cat.name}')">
-      <img src="${cat.img}" alt="${cat.name}" class="cat-img" onerror="this.style.display='none'">
+      <div class="cat-img-wrap">
+        <img src="${cat.img}" alt="${cat.name}" class="cat-img" loading="lazy">
+      </div>
       <span class="cat-name">${cat.name}</span>
     </div>
   `).join('');
 }
 
+// ===== RENDER TRENDING =====
 function renderTrending() {
   const row = document.getElementById('trendingRow');
   if (!row) return;
   const items = PRODUCTS.filter(p => p.isTrending);
   if (!items.length) { row.innerHTML = '<div style="padding:20px;color:var(--text-muted)">No items</div>'; return; }
-  row.innerHTML = items.map(p => `
-    <div class="trend-card" onclick="openProductModal(${p.id})">
-      <img src="${p.img}" alt="${p.name}" class="trend-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/324/324297.png'">
-      <div class="trend-info">
-        <div class="trend-name">${p.name}</div>
-        <div class="trend-price">R ${p.price.toFixed(2)}</div>
-        <div class="trend-badge">◆ Featured</div>
+  row.innerHTML = items.map(p => {
+    const isFav = APP_STATE.favorites.includes(p.id);
+    return `
+      <div class="trend-card" onclick="openProductModal(${p.id})">
+        <img src="${p.img}" alt="${p.name}" class="trend-img" loading="lazy">
+        <button class="trend-fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${p.id}, event)" title="Favorite">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <div class="trend-info">
+          <div class="trend-name">${p.name}</div>
+          <div class="trend-price">R ${p.price.toFixed(2)}</div>
+          <div class="trend-rating">${starHTML(p.rating)}</div>
+          <div class="trend-stock">${p.stock} left in stock</div>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
+// ===== RENDER PRODUCTS =====
 function renderProducts(list) {
   const grid = document.getElementById('prodGrid');
   if (!grid) return;
@@ -127,39 +161,173 @@ function renderProducts(list) {
     grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted);letter-spacing:2px;font-size:12px;text-transform:uppercase;">No spirits found</div>`;
     return;
   }
-  grid.innerHTML = list.map(p => `
-    <div class="product-card" onclick="openProductModal(${p.id})">
-      ${p.badge ? `<span class="product-badge">${p.badge} OFF</span>` : ''}
-      <div class="product-img-wrap">
-        <img src="${p.img}" alt="${p.name}" class="product-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/324/324297.png'">
-      </div>
-      <div class="price-row">
-        <span class="product-price">R ${p.price.toFixed(2)}</span>
-        <span class="product-dist">· ${p.dist}</span>
-      </div>
-      <div class="product-outlet">${p.outlet}</div>
-      <div class="product-desc">${p.desc}</div>
-      <div class="product-vol">${p.vol}</div>
-      <button class="add-btn" onclick="addToCartDirect(${p.id}, event)">+</button>
-    </div>
-  `).join('');
-}
-
-function renderTracking() {
-  const tl = document.getElementById('timeline');
-  if (!tl) return;
-  tl.innerHTML = TRACKING_STEPS.map((step, i) => {
-    const isLast = i === TRACKING_STEPS.length - 1;
+  grid.innerHTML = list.map(p => {
+    const isFav = APP_STATE.favorites.includes(p.id);
     return `
-      <div class="tl-step">
-        <div class="tl-left">
-          <div class="tl-dot ${step.status === 'done' ? 'done' : step.status === 'current' ? 'current' : ''}"></div>
-          ${!isLast ? `<div class="tl-line ${step.status === 'done' ? 'done' : ''}"></div>` : ''}
+      <div class="product-card" onclick="openProductModal(${p.id})">
+        ${p.badge ? `<span class="product-badge">${p.badge} OFF</span>` : ''}
+        <button class="product-fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(${p.id}, event)" title="Favorite">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <div class="product-img-wrap">
+          <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
         </div>
-        <span class="tl-label ${step.status}">${step.icon}&nbsp; ${step.label}</span>
+        <div class="product-name">${p.name}</div>
+        <div class="price-row">
+          <span class="product-price">R ${p.price.toFixed(2)}</span>
+          <span class="product-dist">· ${p.dist}</span>
+        </div>
+        <div class="product-outlet">${p.outlet}</div>
+        <div class="prod-rating">${starHTML(p.rating)}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-vol">${p.vol}</div>
+        <button class="add-btn" onclick="addToCartDirect(${p.id}, event)" title="Add to cart">+</button>
       </div>
     `;
   }).join('');
+}
+
+// ===== RENDER CART =====
+function renderCart() {
+  const body = document.getElementById('cartBody');
+  if (!body) return;
+  if (!APP_STATE.cart.length) {
+    body.innerHTML = `
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <div class="cart-empty-title">Your cart is empty</div>
+        <div class="cart-empty-sub">Add some fine spirits to get started</div>
+        <button class="cart-empty-btn" onclick="navTo('products')">Browse Collection</button>
+      </div>`;
+    return;
+  }
+  const subtotal = APP_STATE.cart.reduce((s, c) => s + c.price * c.qty, 0);
+  const delivery = 5.00;
+  const total = subtotal + delivery;
+  body.innerHTML = `
+    <div class="cart-items">
+      ${APP_STATE.cart.map(item => `
+        <div class="cart-item" id="cart-item-${item.id}">
+          <img src="${item.img}" alt="${item.name}" class="cart-item-img" loading="lazy">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-meta">${item.vol} · ${item.outlet}</div>
+            <div class="cart-item-price">R ${(item.price * item.qty).toFixed(2)}</div>
+          </div>
+          <div class="cart-item-ctrl">
+            <div class="qty-ctrl-sm">
+              <button class="qty-btn-sm" onclick="updateCartQty(${item.id}, -1)">−</button>
+              <span class="qty-val-sm">${item.qty}</span>
+              <button class="qty-btn-sm" onclick="updateCartQty(${item.id}, 1)">+</button>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${item.id})">REMOVE</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="cart-footer">
+      <div class="cart-footer-row">
+        <span class="cart-footer-label">Subtotal</span>
+        <span class="cart-footer-val">R ${subtotal.toFixed(2)}</span>
+      </div>
+      <div class="cart-footer-row">
+        <span class="cart-footer-label">Delivery fee</span>
+        <span class="cart-footer-val">R ${delivery.toFixed(2)}</span>
+      </div>
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-val">R ${total.toFixed(2)}</span>
+      </div>
+      <button class="checkout-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Checkout · R ${total.toFixed(2)}
+      </button>
+    </div>
+  `;
+}
+
+// ===== RENDER FAVORITES =====
+function renderFavorites() {
+  const body = document.getElementById('favBody');
+  if (!body) return;
+  if (!APP_STATE.favorites.length) {
+    body.innerHTML = `
+      <div class="fav-empty">
+        <div class="fav-empty-icon">♡</div>
+        <div class="fav-empty-title">No favorites yet</div>
+        <div class="fav-empty-sub">Tap the heart icon on any product to save it here</div>
+      </div>`;
+    return;
+  }
+  const favProducts = PRODUCTS.filter(p => APP_STATE.favorites.includes(p.id));
+  body.innerHTML = `
+    <div class="fav-grid">
+      ${favProducts.map(p => `
+        <div class="fav-card" onclick="openProductModal(${p.id})">
+          <img src="${p.img}" alt="${p.name}" class="fav-card-img" loading="lazy">
+          <button class="fav-remove-btn" onclick="toggleFav(${p.id}, event)" title="Remove favorite">✕</button>
+          <div class="fav-card-body">
+            <div class="fav-card-name">${p.name}</div>
+            <div class="fav-card-price">R ${p.price.toFixed(2)}</div>
+          </div>
+          <button class="fav-add-cart-btn" onclick="addToCartDirect(${p.id}, event)">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+            Add to Cart
+          </button>
+        </div>
+      `).join('')}
+    </div>`;
+}
+
+// ===== CART ACTIONS =====
+function updateCartQty(id, delta) {
+  const item = APP_STATE.cart.find(c => c.id === id);
+  if (!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  renderCart();
+  updateBadges();
+}
+
+function removeFromCart(id) {
+  APP_STATE.cart = APP_STATE.cart.filter(c => c.id !== id);
+  renderCart();
+  updateBadges();
+  showToast('Item removed from cart');
+}
+
+function clearCart() {
+  if (!APP_STATE.cart.length) return;
+  APP_STATE.cart = [];
+  renderCart();
+  updateBadges();
+  showToast('Cart cleared');
+}
+
+// ===== FAVORITES =====
+function toggleFav(id, e) {
+  if (e) e.stopPropagation();
+  const idx = APP_STATE.favorites.indexOf(id);
+  if (idx === -1) {
+    APP_STATE.favorites.push(id);
+    const p = PRODUCTS.find(p => p.id === id);
+    showToast(`${p ? p.name : 'Item'} added to favorites ♥`);
+  } else {
+    APP_STATE.favorites.splice(idx, 1);
+    showToast('Removed from favorites');
+  }
+  updateBadges();
+  // Re-render current screen to update heart icons
+  if (APP_STATE.currentScreen === 'products') renderProducts(PRODUCTS);
+  else if (APP_STATE.currentScreen === 'favorites') renderFavorites();
+  else renderTrending();
+  // Update modal fav button if open
+  const modalFavBtn = document.getElementById('modalFavBtn');
+  if (modalFavBtn && APP_STATE.selectedProduct) {
+    const isFav = APP_STATE.favorites.includes(APP_STATE.selectedProduct.id);
+    modalFavBtn.classList.toggle('active', isFav);
+    const svg = modalFavBtn.querySelector('svg');
+    if (svg) svg.setAttribute('fill', isFav ? 'currentColor' : 'none');
+  }
 }
 
 // ===== PRODUCT MODAL =====
@@ -181,15 +349,12 @@ function closeModal() {
   const overlay = document.getElementById('modalOverlay');
   overlay.classList.remove('open');
   document.body.style.overflow = '';
-  setTimeout(() => {
-    APP_STATE.selectedProduct = null;
-    APP_STATE.modalStep = 1;
-  }, 400);
+  setTimeout(() => { APP_STATE.selectedProduct = null; APP_STATE.modalStep = 1; }, 400);
 }
 
 function getVolPrice(product, vol) {
-  const volMultipliers = { '200ml': 0.27, '375ml': 0.5, '750ml': 1, '1L': 1.35, '1.5L': 2, '1.75L': 2.33 };
-  return product.price * (volMultipliers[vol] || 1);
+  const m = { '200ml': 0.27, '375ml': 0.5, '750ml': 1, '1L': 1.35, '1.5L': 2, '1.75L': 2.33 };
+  return product.price * (m[vol] || 1);
 }
 
 function calcTotal() {
@@ -204,35 +369,33 @@ function renderProductModalContent() {
   if (!p || !sheet) return;
 
   if (APP_STATE.modalStep === 1) {
+    const isFav = APP_STATE.favorites.includes(p.id);
     sheet.innerHTML = `
       <div class="modal-handle"></div>
       <button class="modal-close" onclick="closeModal()">✕</button>
-
       <div class="modal-product-img-wrap">
         ${p.badge ? `<div class="modal-product-badge">${p.badge} OFF</div>` : ''}
-        <img src="${p.img}" alt="${p.name}" class="modal-product-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/324/324297.png'">
+        <button class="modal-fav-btn ${isFav ? 'active' : ''}" id="modalFavBtn" onclick="toggleFav(${p.id}, event)" title="Favorite">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <img src="${p.img}" alt="${p.name}" class="modal-product-img">
       </div>
-
       <div class="modal-body">
         <div class="modal-outlet-tag">${p.outlet}</div>
         <h2 class="modal-product-name">${p.name}</h2>
         <p class="modal-product-desc">${p.desc}</p>
-
         <div class="modal-price-row">
           <div class="modal-price" id="modalPrice">R ${getVolPrice(p, APP_STATE.selectedVol).toFixed(2)}</div>
           <div class="modal-dist-chip">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             ${p.dist}
           </div>
+          ${starHTML(p.rating)}
         </div>
-
         <div class="modal-section-label">Select Size</div>
         <div class="vol-selector" id="volSelector">
-          ${p.vols.map(v => `
-            <button class="vol-btn ${v === APP_STATE.selectedVol ? 'selected' : ''}" onclick="selectVol('${v}')">${v}</button>
-          `).join('')}
+          ${p.vols.map(v => `<button class="vol-btn ${v === APP_STATE.selectedVol ? 'selected' : ''}" onclick="selectVol('${v}')">${v}</button>`).join('')}
         </div>
-
         <div class="modal-section-label">Quantity</div>
         <div class="qty-row">
           <div class="qty-ctrl">
@@ -242,23 +405,19 @@ function renderProductModalContent() {
           </div>
           <div class="modal-total">Total: <strong id="modalTotal">R ${calcTotal().toFixed(2)}</strong></div>
         </div>
-
         <button class="buy-now-btn" onclick="goToOrderStep()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           Buy Now
         </button>
         <button class="add-cart-secondary" onclick="addToCartFromModal()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
           Add to Cart
         </button>
-      </div>
-    `;
+      </div>`;
   } else if (APP_STATE.modalStep === 2) {
     const now = new Date();
     const dateStr = now.toLocaleDateString('en-ZA', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     const timeStr = now.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' });
-    const p = APP_STATE.selectedProduct;
-
     sheet.innerHTML = `
       <div class="modal-handle"></div>
       <button class="modal-close" onclick="closeModal()">✕</button>
@@ -268,76 +427,45 @@ function renderProductModalContent() {
           <div class="order-title">Confirm Order</div>
           <div class="order-sub">Please review your order details before placing.</div>
         </div>
-
         <div class="order-item-summary">
-          <img src="${p.img}" alt="${p.name}" class="order-item-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/324/324297.png'">
+          <img src="${p.img}" alt="${p.name}" class="order-item-img">
           <div>
             <div class="order-item-name">${p.name}</div>
             <div class="order-item-meta">${APP_STATE.selectedVol} · Qty ${APP_STATE.selectedQty}</div>
           </div>
           <div class="order-item-price">R ${calcTotal().toFixed(2)}</div>
         </div>
-
         <div class="order-detail-group">
           <div class="order-detail-row">
-            <div class="order-detail-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <div class="order-detail-content">
-              <div class="order-detail-label">Customer</div>
-              <div class="order-detail-value">Alex Morgan</div>
-            </div>
+            <div class="order-detail-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="order-detail-content"><div class="order-detail-label">Customer</div><div class="order-detail-value">Alex Morgan</div></div>
           </div>
           <div class="order-detail-row">
-            <div class="order-detail-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="order-detail-content">
-              <div class="order-detail-label">Delivery Location</div>
-              <div class="order-detail-value">75 Firehouse Rd, Woodbourne</div>
-            </div>
+            <div class="order-detail-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="order-detail-content"><div class="order-detail-label">Delivery Location</div><div class="order-detail-value">75 Firehouse Rd, Woodbourne</div></div>
           </div>
           <div class="order-detail-row">
-            <div class="order-detail-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-            </div>
-            <div class="order-detail-content">
-              <div class="order-detail-label">Date & Time</div>
-              <div class="order-detail-value">${dateStr} · ${timeStr}</div>
-            </div>
+            <div class="order-detail-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+            <div class="order-detail-content"><div class="order-detail-label">Date &amp; Time</div><div class="order-detail-value">${dateStr} · ${timeStr}</div></div>
           </div>
         </div>
-
         <div class="modal-section-label">Payment Method</div>
         <div class="payment-methods-grid" id="payMethodGrid">
-          <button class="pay-method-btn ${APP_STATE.selectedPayment === 'card' ? 'selected' : ''}" onclick="selectPayment('card')">
-            <span class="pay-icon">💳</span>
-            <span class="pay-label">Card</span>
-          </button>
-          <button class="pay-method-btn ${APP_STATE.selectedPayment === 'cash' ? 'selected' : ''}" onclick="selectPayment('cash')">
-            <span class="pay-icon">💵</span>
-            <span class="pay-label">Cash</span>
-          </button>
-          <button class="pay-method-btn ${APP_STATE.selectedPayment === 'wallet' ? 'selected' : ''}" onclick="selectPayment('wallet')">
-            <span class="pay-icon">📱</span>
-            <span class="pay-label">Wallet</span>
-          </button>
-          <button class="pay-method-btn ${APP_STATE.selectedPayment === 'eft' ? 'selected' : ''}" onclick="selectPayment('eft')">
-            <span class="pay-icon">🏦</span>
-            <span class="pay-label">EFT</span>
-          </button>
+          ${['card','cash','wallet','eft'].map(m => `
+            <button class="pay-method-btn ${APP_STATE.selectedPayment === m ? 'selected' : ''}" onclick="selectPayment('${m}')">
+              <span class="pay-icon">${m==='card'?'💳':m==='cash'?'💵':m==='wallet'?'📱':'🏦'}</span>
+              <span class="pay-label">${m.charAt(0).toUpperCase()+m.slice(1)}</span>
+            </button>`).join('')}
         </div>
-
         <button class="place-order-btn" onclick="placeOrder()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
           Place Order · R ${calcTotal().toFixed(2)}
         </button>
         <button class="back-to-product-btn" onclick="goBackToProduct()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
           Back
         </button>
-      </div>
-    `;
+      </div>`;
   } else if (APP_STATE.modalStep === 3) {
     const orderId = 'MSN-' + Math.random().toString(36).substr(2, 6).toUpperCase();
     sheet.innerHTML = `
@@ -346,25 +474,20 @@ function renderProductModalContent() {
         <div class="success-title">Order Placed!</div>
         <div class="success-sub">Your ${APP_STATE.selectedProduct?.name} is being prepared.<br>Estimated delivery in <strong>20 minutes</strong>.</div>
         <div class="order-id-chip">Order #${orderId}</div>
-        <button class="track-order-btn" onclick="closeModal(); navTo('tracking');">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88 16.24,7.76"/></svg>
-          Track My Order
+        <button class="track-order-btn" onclick="closeModal(); navTo('cart');">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          View Cart
         </button>
-        <button class="back-to-product-btn" style="margin-top:10px" onclick="closeModal()">
-          Continue Shopping
-        </button>
-      </div>
-    `;
+        <button class="back-to-product-btn" style="margin-top:10px" onclick="closeModal()">Continue Shopping</button>
+      </div>`;
   }
 }
 
 function selectVol(vol) {
   APP_STATE.selectedVol = vol;
-  // Update buttons
   document.querySelectorAll('.vol-btn').forEach(btn => {
     btn.classList.toggle('selected', btn.textContent.trim() === vol);
   });
-  // Update price
   const p = APP_STATE.selectedProduct;
   const priceEl = document.getElementById('modalPrice');
   const totalEl = document.getElementById('modalTotal');
@@ -380,31 +503,20 @@ function changeQty(delta) {
   if (totalEl) totalEl.textContent = `R ${calcTotal().toFixed(2)}`;
 }
 
-function goToOrderStep() {
-  APP_STATE.modalStep = 2;
-  renderProductModalContent();
-}
-
-function goBackToProduct() {
-  APP_STATE.modalStep = 1;
-  renderProductModalContent();
-}
+function goToOrderStep() { APP_STATE.modalStep = 2; renderProductModalContent(); }
+function goBackToProduct() { APP_STATE.modalStep = 1; renderProductModalContent(); }
 
 function selectPayment(method) {
   APP_STATE.selectedPayment = method;
-  document.querySelectorAll('.pay-method-btn').forEach(btn => {
-    btn.classList.remove('selected');
-    btn.querySelector('.pay-icon')?.classList?.remove('selected');
-  });
-  const grid = document.getElementById('payMethodGrid');
-  if (grid) {
-    const btns = grid.querySelectorAll('.pay-method-btn');
-    const methods = ['card', 'cash', 'wallet', 'eft'];
-    methods.forEach((m, i) => { if (m === method) btns[i]?.classList.add('selected'); });
-  }
+  document.querySelectorAll('.pay-method-btn').forEach(btn => btn.classList.remove('selected'));
+  const methods = ['card','cash','wallet','eft'];
+  const btns = document.querySelectorAll('.pay-method-btn');
+  methods.forEach((m, i) => { if (m === method && btns[i]) btns[i].classList.add('selected'); });
 }
 
 function placeOrder() {
+  APP_STATE.cart = [];
+  updateBadges();
   APP_STATE.modalStep = 3;
   renderProductModalContent();
 }
@@ -415,17 +527,19 @@ function addToCartFromModal() {
   const existing = APP_STATE.cart.find(c => c.id === p.id && c.vol === APP_STATE.selectedVol);
   if (existing) existing.qty += APP_STATE.selectedQty;
   else APP_STATE.cart.push({ ...p, vol: APP_STATE.selectedVol, qty: APP_STATE.selectedQty });
+  updateBadges();
   closeModal();
-  showToast(`${p.name} (${APP_STATE.selectedVol} × ${APP_STATE.selectedQty}) added`);
+  showToast(`${p.name} added to cart`);
 }
 
 function addToCartDirect(id, e) {
-  e.stopPropagation();
+  if (e) e.stopPropagation();
   const product = PRODUCTS.find(p => p.id === id);
   if (!product) return;
   const existing = APP_STATE.cart.find(c => c.id === id);
   if (existing) existing.qty++;
   else APP_STATE.cart.push({ ...product, qty: 1 });
+  updateBadges();
   showToast(`${product.name} added to cart`);
 }
 
@@ -442,7 +556,8 @@ function navTo(name) {
     const title = document.getElementById('prodTitle');
     if (title) title.textContent = APP_STATE.activeCategory === 'All' ? 'Collection' : APP_STATE.activeCategory;
   }
-  if (name === 'tracking') renderTracking();
+  if (name === 'cart') renderCart();
+  if (name === 'favorites') renderFavorites();
   window.scrollTo(0, 0);
 }
 
@@ -468,45 +583,29 @@ function onSearch(val) {
     renderProducts(results);
     const title = document.getElementById('prodTitle');
     if (title) title.textContent = `"${val}"`;
-  } else {
-    navTo('home');
-  }
+  } else { navTo('home'); }
 }
 
 function filterProds(val) {
-  const list = val ? PRODUCTS.filter(p => p.name.toLowerCase().includes(val.toLowerCase())) : PRODUCTS;
+  const clearBtn = document.getElementById('clearProdSearch');
+  if (clearBtn) clearBtn.style.display = val ? 'flex' : 'none';
+  const list = val ? PRODUCTS.filter(p => p.name.toLowerCase().includes(val.toLowerCase()) || p.category.toLowerCase().includes(val.toLowerCase())) : PRODUCTS;
   renderProducts(list);
 }
 
 function clearSearch() {
-  ['deskSearch', 'mobSearch'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
-  });
+  ['deskSearch','mobSearch'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
   const deskClear = document.getElementById('deskClear');
   if (deskClear) deskClear.style.display = 'none';
   navTo('home');
 }
 
-// ===== TOGGLE =====
+// ===== FULFILLMENT TOGGLE =====
 function setDel(mode) {
   APP_STATE.deliveryMode = mode;
   document.getElementById('togDel')?.classList.toggle('active', mode === 'delivery');
   document.getElementById('togPick')?.classList.toggle('active', mode === 'pickup');
   showToast(mode === 'delivery' ? 'Delivery selected' : 'Collection selected');
-}
-
-// ===== RATING =====
-function doRate(val) {
-  APP_STATE.rating = val;
-  document.querySelectorAll('.star').forEach((s, i) => s.classList.toggle('lit', i < val));
-  if (val > 0) {
-    setTimeout(() => {
-      const card = document.getElementById('rateCard');
-      if (card) card.style.opacity = '0';
-      showToast('Thank you for your rating ★');
-    }, 600);
-  }
 }
 
 // ===== TOAST =====
@@ -520,11 +619,12 @@ function showToast(msg) {
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
-  bannerSlides = document.querySelectorAll('.banner-slide');
-  bannerTrack = document.getElementById('bannerTrack');
-  dotsContainer = document.getElementById('bannerDots');
+  // Banner
+  const slides = document.querySelectorAll('.banner-slide');
+  bannerSlidesCount = slides.length;
+  if (bannerSlidesCount) { createBannerDots(); resetBannerInterval(); }
 
-  // Create modal overlay
+  // Modal overlay
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay';
   overlay.id = 'modalOverlay';
@@ -532,15 +632,16 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
   document.body.appendChild(overlay);
 
+  // Render initial content
   renderCategories();
   renderTrending();
-  renderTracking();
+  updateBadges();
 
-  if (bannerSlides.length) { createBannerDots(); resetBannerInterval(); }
-
+  // Banner controls
   document.getElementById('prevBanner')?.addEventListener('click', prevBanner);
   document.getElementById('nextBanner')?.addEventListener('click', nextBanner);
 
+  // Search
   document.getElementById('deskSearch')?.addEventListener('input', e => onSearch(e.target.value));
   document.getElementById('mobSearch')?.addEventListener('input', e => onSearch(e.target.value));
   document.getElementById('prodSearch')?.addEventListener('input', e => filterProds(e.target.value));
@@ -549,31 +650,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if (inp) inp.value = '';
     filterProds('');
   });
+  document.getElementById('deskClear')?.addEventListener('click', clearSearch);
 
+  // Fulfillment
   document.getElementById('togDel')?.addEventListener('click', () => setDel('delivery'));
   document.getElementById('togPick')?.addEventListener('click', () => setDel('pickup'));
+
+  // Nav links
   document.getElementById('seeAllCat')?.addEventListener('click', () => navTo('products'));
   document.getElementById('seeAllTrending')?.addEventListener('click', () => navTo('products'));
   document.getElementById('backFromProducts')?.addEventListener('click', () => navTo('home'));
-  document.getElementById('backFromTracking')?.addEventListener('click', () => navTo('home'));
+  document.getElementById('backFromCart')?.addEventListener('click', () => navTo('home'));
+  document.getElementById('backFromFavorites')?.addEventListener('click', () => navTo('home'));
   document.getElementById('backFromAccount')?.addEventListener('click', () => navTo('home'));
-  document.getElementById('deskClear')?.addEventListener('click', clearSearch);
+  document.getElementById('clearCartBtn')?.addEventListener('click', clearCart);
+
+  // Mobile header nav buttons
+  document.getElementById('mobFavBtn')?.addEventListener('click', () => navTo('favorites'));
+  document.getElementById('mobCartBtn')?.addEventListener('click', () => navTo('cart'));
+
+  // Account
   document.getElementById('viewOrderHistory')?.addEventListener('click', () => showToast('Order history coming soon'));
   document.getElementById('manageAddress')?.addEventListener('click', () => showToast('Address management coming soon'));
   document.getElementById('paymentMethods')?.addEventListener('click', () => showToast('Payment methods coming soon'));
   document.getElementById('logoutBtn')?.addEventListener('click', () => showToast('Signed out successfully'));
 
-  document.querySelectorAll('.snav').forEach(btn => btn.addEventListener('click', () => navTo(btn.dataset.screen)));
-  document.querySelectorAll('.bnav-btn').forEach(btn => btn.addEventListener('click', () => navTo(btn.dataset.screen)));
-  document.querySelectorAll('.star').forEach(star => star.addEventListener('click', () => doRate(parseInt(star.dataset.rate))));
+  // Sidebar & bottom nav — unified
+  document.querySelectorAll('.snav, .bnav-btn, [data-screen]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const screen = btn.dataset.screen;
+      if (screen) navTo(screen);
+    });
+  });
 
-  // Escape key closes modal
+  // Escape key
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // Touch swipe on banner
+  let touchStartX = 0;
+  const bannerCarousel = document.querySelector('.banner-carousel');
+  if (bannerCarousel) {
+    bannerCarousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    bannerCarousel.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { diff > 0 ? nextBanner() : prevBanner(); }
+    }, { passive: true });
+  }
 
   navTo('home');
 });
 
-// Make functions global for inline onclick handlers
+// Globals for inline handlers
 window.openProductModal = openProductModal;
 window.closeModal = closeModal;
 window.selectVol = selectVol;
@@ -586,3 +713,6 @@ window.addToCartFromModal = addToCartFromModal;
 window.addToCartDirect = addToCartDirect;
 window.filterByCategory = filterByCategory;
 window.navTo = navTo;
+window.toggleFav = toggleFav;
+window.updateCartQty = updateCartQty;
+window.removeFromCart = removeFromCart;
